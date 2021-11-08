@@ -11,10 +11,10 @@ fetch("http://localhost:3000/api/products")
       items.appendChild(linkElement);
 
       const articleElement = document.createElement("article");
-      items.appendChild(articleElement);
+      linkElement.appendChild(articleElement);
 
       const imgElement = document.createElement("img");
-      imgElement.src = `.../${product.imageUrl}`;
+      imgElement.src = `${product.imageUrl}`;
       articleElement.appendChild(imgElement);
       imgElement.alt = `${product.altTxt}`;
 
