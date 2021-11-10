@@ -13,9 +13,9 @@ fetch("http://localhost:3000/api/products")
       linkElement.appendChild(articleElement);
 
       const imgElement = document.createElement("img");
-      imgElement.src = `${product.imageUrl}`;
+      imgElement.src = product.imageUrl;
       articleElement.appendChild(imgElement);
-      imgElement.alt = `${product.altTxt}`;
+      imgElement.alt = product.altTxt;
 
       const titleElement = document.createElement("h3");
       articleElement.appendChild(titleElement);
