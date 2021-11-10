@@ -10,6 +10,13 @@ fetch(`http://localhost:3000/api/products/${id}`)
   })
   .then((product) => {
     console.log(product);
+    const imgClassElement = document.getElementsByClassName("item__img");
+
+    const productImg = document.createElement("img");
+    productImg.src = product.imageUrl;
+    imgClassElement[0].appendChild(productImg);
+
+    title.innerHTML = product.name;
 
     price.innerHTML = product.price;
 
@@ -19,9 +26,9 @@ fetch(`http://localhost:3000/api/products/${id}`)
     console.log(productColors);
 
     for (let i = 0; i < productColors.length; i++) {
-      const optionElement = document.createElement("option");
-      colors.appendChild(optionElement);
-      optionElement.setAttribute("value", productColors[i]);
-      optionElement.innerHTML = productColors[i];
+      const optionProduct = document.createElement("option");
+      colors.appendChild(optionProduct);
+      optionProduct.setAttribute("value", productColors[i]);
+      optionProduct.innerHTML = productColors[i];
     }
   });
