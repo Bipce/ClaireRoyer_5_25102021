@@ -31,4 +31,13 @@ fetch(`http://localhost:3000/api/products/${id}`)
       optionProduct.setAttribute("value", productColors[i]);
       optionProduct.innerHTML = productColors[i];
     }
+
+    const addCart = document.getElementById("addToCart");
+    addCart.addEventListener("click", function () {
+      localStorage.setItem("id", id);
+      localStorage.setItem("img", product.imageUrl);
+      localStorage.setItem("alt", product.altTxt);
+      localStorage.setItem("name", product.name);
+      localStorage.setItem("price", product.price);
+    });
   });
