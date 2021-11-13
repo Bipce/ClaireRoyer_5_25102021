@@ -33,11 +33,15 @@ fetch(`http://localhost:3000/api/products/${id}`)
     }
 
     const addCart = document.getElementById("addToCart");
-    addCart.addEventListener("click", function () {
-      localStorage.setItem("id", id);
-      localStorage.setItem("img", product.imageUrl);
-      localStorage.setItem("alt", product.altTxt);
-      localStorage.setItem("name", product.name);
-      localStorage.setItem("price", product.price);
+    addCart.addEventListener("click", () => {
+      const key = "products";
+
+      // Get products array in local storage.
+      let products = JSON.parse(localStorage.getItem(key));
+      // Set products array if not present in local storage.
+      if (products === null) products = [];
+      products.push(product);
+      // Set products in local storage.
+      localStorage.setItem(key, JSON.stringify(products));
     });
   });
