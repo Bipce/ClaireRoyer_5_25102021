@@ -50,7 +50,7 @@ for (let i = 0; i < product.length; i++) {
   cartQuantityElement.innerHTML = "Qté :"; // Add quantity once it's done.
   cartQuantityDiv.appendChild(cartQuantityElement);
   // Create input
-  const cartInputElement = document.createElement("input");
+  const cartInputElement = document.createElement("quantity");
   (cartInputElement.type = "number"),
     (cartInputElement.min = 1),
     (cartInputElement.max = 100),
