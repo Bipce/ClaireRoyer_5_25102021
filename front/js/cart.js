@@ -32,6 +32,7 @@ const setView = () => {
 setView();
 
 const deleteCarts = document.getElementsByClassName("deleteItem");
+console.log(deleteCarts);
 const key = "products";
 
 const deleteItem = (i) => {
@@ -42,6 +43,8 @@ const deleteItem = (i) => {
 for (let i = 0; i < deleteCarts.length; i++) {
   deleteCarts[i].addEventListener("click", () => {
     deleteItem(i);
-    setView();
+    deleteCarts[
+      i
+    ].parentElement.parentElement.parentElement.parentElement.remove();
   });
 }
