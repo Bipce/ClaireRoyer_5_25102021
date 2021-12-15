@@ -35,16 +35,25 @@ const deleteCarts = document.getElementsByClassName("deleteItem");
 console.log(deleteCarts);
 const key = "products";
 
-const deleteItem = (i) => {
-  products.splice(i, 1);
+const deleteProduct = (id) => {
+  for (let i = 0; i < products.length; i++) {
+    if (products[i]._id === id) {
+      products.splice(i, 1);
+      break;
+    }
+  }
+
+  // Other way to do it.
+  // const index = products.findIndex((p) => p._id === id);
+  // products.splice(index, 1);
+
   localStorage.setItem(key, JSON.stringify(products));
 };
 
 for (let i = 0; i < deleteCarts.length; i++) {
-  deleteCarts[i].addEventListener("click", () => {
-    deleteItem(i);
-    deleteCarts[
-      i
-    ].parentElement.parentElement.parentElement.parentElement.remove();
+  deleteCarts[i].addEventListener("click", (e) => {
+    const article = e.target.closest("article");
+    deleteProduct(article.getAttribute("data-id"));
+    article.remove();
   });
 }
