@@ -76,7 +76,6 @@ const changeProduct = document.getElementsByClassName("itemQuantity");
 for (let i = 0; i < changeProduct.length; i++) {
   changeProduct[i].addEventListener("change", (e) => {
     const quantity = parseInt(changeProduct[i].value);
-
     const article = e.target.closest("article");
     updateProduct(article.dataset.id, article.dataset.color, quantity);
   });
@@ -98,3 +97,35 @@ const displayTotal = () => {
 };
 
 displayTotal();
+
+// Form validation.
+
+// Check first and last name.
+
+const form = document.getElementsByClassName("cart__order__form");
+
+const validName = (inputName) => {
+  const nameRegExp = new RegExp("^[A-Z][a-z]*$");
+  // let testName = =nameRegExp.test(inputName.value);
+};
+
+firstName.addEventListener("change", () => {
+  validName(firstName);
+});
+
+lastName.addEventListener("change", () => {
+  validName(lastName);
+});
+
+// Check address.
+
+const validAddress = (inputAddress) => {
+  const addressRegExp = new RegExp("^[0-9]* [a-z]");
+  let testAddress = addressRegExp.test(inputAddress.value);
+
+  console.log(testAddress);
+};
+
+address.addEventListener("change", () => {
+  validAddress(address);
+});
