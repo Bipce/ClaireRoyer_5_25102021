@@ -105,8 +105,9 @@ displayTotal();
 const form = document.getElementsByClassName("cart__order__form");
 
 const validName = (inputName) => {
-  const nameRegExp = new RegExp("^[A-Z][a-z]*$");
-  // let testName = =nameRegExp.test(inputName.value);
+  //  prettier-ignore
+  const nameRegExp = new RegExp("(^[A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*$");
+  return nameRegExp.test(inputName.value);
 };
 
 firstName.addEventListener("change", () => {
@@ -120,7 +121,8 @@ lastName.addEventListener("change", () => {
 // Check address.
 
 const validAddress = (inputAddress) => {
-  const addressRegExp = new RegExp("^[0-9]* [a-z]");
+  //  prettier-ignore
+  const addressRegExp = new RegExp("^[0-9]*[\s'\-A-zÀ-ÿ]*$");
   let testAddress = addressRegExp.test(inputAddress.value);
 
   console.log(testAddress);
@@ -128,4 +130,16 @@ const validAddress = (inputAddress) => {
 
 address.addEventListener("change", () => {
   validAddress(address);
+});
+
+// Order.
+
+order.addEventListener("click", (e) => {
+  e.preventDefault();
+  let check = true;
+  let name1 = firstName.value;
+  if (!validName(name1)) {
+    check = false;
+    firstNameErrorMsg.innerHTML = "Erreur";
+  }
 });
