@@ -99,47 +99,52 @@ const displayTotal = () => {
 displayTotal();
 
 // Form validation.
-
-// Check first and last name.
-
 const form = document.getElementsByClassName("cart__order__form");
 
-const validName = (inputName) => {
+// Check first, last name and city.
+const validNameCity = (inputNameCity) => {
   //  prettier-ignore
-  const nameRegExp = new RegExp("(^[A-Z][a-z]*)([\\s\\\'-][A-Z][a-z]*)*$");
-  return nameRegExp.test(inputName.value);
+  const nameCityRegExp = new RegExp("(^[A-zÀ-ÿ]*)([\\s\\\'-][A-zÀ-ÿ]*)*$");
+  return nameCityRegExp.test(inputNameCity.value);
 };
-
-firstName.addEventListener("change", () => {
-  validName(firstName);
-});
-
-lastName.addEventListener("change", () => {
-  validName(lastName);
-});
 
 // Check address.
-
 const validAddress = (inputAddress) => {
   //  prettier-ignore
-  const addressRegExp = new RegExp("^[0-9]*[\s'\-A-zÀ-ÿ]*$");
-  let testAddress = addressRegExp.test(inputAddress.value);
-
-  console.log(testAddress);
+  const addressRegExp = new RegExp("^[0-9]*[\\s'\\-A-zÀ-ÿ]*$");
+  return addressRegExp.test(inputAddress.value);
 };
 
-address.addEventListener("change", () => {
-  validAddress(address);
+// Check email.
+const validEmail = (inputEmail) => {
+  // prettier-ignore
+  const emailRegExp = new RegExp("^[a-z0-9]*[@]*[a-z]*\.[a-z]{2,3}");
+  let testEmail = emailRegExp.test(inputEmail);
+  console.log(testEmail);
+};
+
+email.addEventListener("change", () => {
+  validEmail(email);
 });
 
 // Order.
-
 order.addEventListener("click", (e) => {
   e.preventDefault();
   let check = true;
-  let name1 = firstName.value;
-  if (!validName(name1)) {
+  if (!validNameCity(firstName)) {
     check = false;
     firstNameErrorMsg.innerHTML = "Erreur";
+  } else if (!validNameCity(lastName)) {
+    check = false;
+    lastNameErrorMsg.innerHTML = "Erreur";
+  } else if (!validNameCity(city)) {
+    check = false;
+    cityErrorMsg.innerHTML = "Erreur";
+  } else if (!validAddress(address)) {
+    check = false;
+    addressErrorMsg.innerHTML = "Erreur";
+    // } else if (!validEmail(email)) {
+    //   check = false;
+    //   emailErrorMsg.innerHTML = "Erreur";
   }
 });
