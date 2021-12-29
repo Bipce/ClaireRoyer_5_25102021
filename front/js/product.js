@@ -12,6 +12,8 @@ fetch(`http://localhost:3000/api/products/${id}`)
   .then((product) => {
     console.log(product);
 
+    document.title = product.name;
+
     const imgClassElement = document.getElementsByClassName("item__img");
 
     const productImg = document.createElement("img");
