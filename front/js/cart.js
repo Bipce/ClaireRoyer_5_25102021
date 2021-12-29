@@ -4,6 +4,7 @@ const id = url.searchParams.get("orderId");
 
 try {
   orderId.innerHTML = id;
+  localStorage.clear();
 } catch {}
 
 const itemsCart = document.getElementById("cart__items");
