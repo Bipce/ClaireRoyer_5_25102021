@@ -1,5 +1,4 @@
 // Get product id.
-
 const loc = window.location.href;
 const url = new URL(loc);
 const id = url.searchParams.get("id");
@@ -45,10 +44,13 @@ fetch(`http://localhost:3000/api/products/${id}`)
         parseInt(quantityInput.value) <= 0 ||
         parseInt(quantityInput.value) > 100 ||
         colorsElement.value === ""
-      )
+      ) {
         return alert(
           "Veuillez sélectionner une couleur et un nombre entre 0 et 100."
         );
+      } else {
+        alert("Produit ajouté au panier.");
+      }
 
       const key = "products";
       product.color = colorsElement.value;
