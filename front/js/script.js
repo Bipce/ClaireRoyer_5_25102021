@@ -1,9 +1,9 @@
 // Show product in home page.
 
 fetch("http://localhost:3000/api/products")
-  .then((response) => response.json())
+  .then((response) => response.json()) // Get a JSON response.
   .then((products) => {
-    console.log(products);
+    // Create all products.
     const items = document.getElementById("items");
 
     for (const product of products) {

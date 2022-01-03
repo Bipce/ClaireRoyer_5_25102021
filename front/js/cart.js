@@ -1,12 +1,3 @@
-const loc = window.location.href;
-const url = new URL(loc);
-const id = url.searchParams.get("orderId");
-
-try {
-  orderId.innerHTML = id;
-  localStorage.clear();
-} catch {}
-
 const itemsCart = document.getElementById("cart__items");
 const products = JSON.parse(localStorage.getItem("products"));
 
@@ -43,7 +34,6 @@ setView();
 
 // Delete products.
 const deleteCarts = document.getElementsByClassName("deleteItem");
-console.log(deleteCarts);
 const key = "products";
 
 const deleteProduct = (id, color) => {
@@ -120,6 +110,8 @@ const form = document.getElementsByClassName("cart__order__form");
 
 // Check first, last name and city.
 const validNameCity = (inputNameCity) => {
+  inputNameCity.value = inputNameCity.value.trim();
+  if (!inputNameCity.value) return false;
   //  prettier-ignore
   const nameCityRegExp = new RegExp("^([A-zÀ-ÿ]*)([\\s\'-][A-zÀ-ÿ]*)*$");
   return nameCityRegExp.test(inputNameCity.value);
@@ -127,6 +119,8 @@ const validNameCity = (inputNameCity) => {
 
 // Check address.
 const validAddress = (inputAddress) => {
+  inputAddress.value = inputAddress.value.trim();
+  if (!inputAddress.value) return false;
   //  prettier-ignore
   const addressRegExp = new RegExp("^[0-9]*[\\s'\\-A-zÀ-ÿ]*$");
   return addressRegExp.test(inputAddress.value);
@@ -134,6 +128,8 @@ const validAddress = (inputAddress) => {
 
 // Check email.
 const validEmail = (inputEmail) => {
+  inputEmail.value = inputEmail.value.trim();
+  if (!inputEmail.value) return false;
   // prettier-ignore
   const emailRegExp = new RegExp("^[a-z0-9-_.]+@[a-z]+\.[a-z]{2,3}$");
   return emailRegExp.test(inputEmail.value);
@@ -195,15 +191,14 @@ order.addEventListener("click", (e) => {
 
   // Get order id.
   fetch("http://localhost:3000/api/products/order", {
-    method: "POST",
+    method: "POST", // Send order.
     body: JSON.stringify(data),
     headers: {
-      Accept: "application/json, text/plain, */*",
-      "Content-Type": "application/json",
+      "Content-Type": "application/json", // Content is JSON type.
     },
   })
     .then((response) => response.json())
-    .then((res) => {
+    .then((response) => {
       window.location.href = `/front/html/confirmation.html?orderId=${res.orderId}`;
     });
 });

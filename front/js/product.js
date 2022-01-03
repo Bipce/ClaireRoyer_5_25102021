@@ -1,8 +1,7 @@
 // Get product id.
-const loc = window.location.href;
-const url = new URL(loc);
-const id = url.searchParams.get("id");
-console.log(id);
+const loc = window.location.href; // Get URL.
+const url = new URL(loc); // Create new instance of class URL.
+const id = url.searchParams.get("id"); // Get id.
 
 fetch(`http://localhost:3000/api/products/${id}`)
   .then((response) => {
@@ -10,8 +9,6 @@ fetch(`http://localhost:3000/api/products/${id}`)
     throw new Error("Ce produit n'existe pas.");
   })
   .then((product) => {
-    console.log(product);
-
     document.title = product.name;
 
     const imgClassElement = document.getElementsByClassName("item__img");
