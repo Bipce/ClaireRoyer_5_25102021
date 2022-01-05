@@ -1,5 +1,6 @@
 const itemsCart = document.getElementById("cart__items");
 const products = JSON.parse(localStorage.getItem("products"));
+products.sort((p1, p2) => p1._id > p2._id);
 
 // Set view of products in cart.
 const setView = () => {
