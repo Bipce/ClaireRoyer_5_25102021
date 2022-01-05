@@ -199,6 +199,6 @@ order.addEventListener("click", (e) => {
   })
     .then((response) => response.json())
     .then((response) => {
-      window.location.href = `/front/html/confirmation.html?orderId=${res.orderId}`;
+      window.location.href = `/front/html/confirmation.html?orderId=${response.orderId}`;
     });
 });
